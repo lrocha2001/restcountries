@@ -4,11 +4,9 @@ import { fetchAndTransformData } from './Api';
 
 const SearchBar = () => {
   const { setCountries } = useContext(CountryContext);
-  const [searchClicked, setSearchClicked] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [ errorMessage, setErrorMessage ] = useState('');
 
   const handleSearchClick = async () => {
-    setSearchClicked(true);
     setErrorMessage(''); // Limpar a mensagem de erro anterior
 
     const searchInput = document.getElementById('searchInput');
@@ -20,8 +18,10 @@ const SearchBar = () => {
         setCountries(countriesWithId);
       } catch (error) {
         setErrorMessage(error.message);
-        setCountries([]); // Limpar os dados no contexto
+        setCountries([]);
       }
+    } else {
+      setErrorMessage('Preencha o campo de pesquisa.');
     }
   };
 

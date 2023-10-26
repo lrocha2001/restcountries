@@ -1,22 +1,24 @@
-import React, { useContext, useEffect, memo, useState } from 'react';
+import React, { useContext, useEffect, memo } from 'react';
 import { CountryContext } from './CountryContext';
 import { DataGrid } from '@mui/x-data-grid';
 import { fetchAndTransformData } from './Api';
 
 const CountryList = () => {
-  const { countries, setCountries, search } = useContext(CountryContext);
-  const [searchClicked, setSearchClicked] = useState(false);
-
+  const { countries, setCountries } = useContext(CountryContext);
+  
   useEffect(() => {
     const fetchData = async () => {
-      if (searchClicked) {
+      const searchInput = document.getElementById('searchInput');
+      const search = searchInput ? searchInput.value : '';
+      
+      if (search) { 
         const countriesWithId = await fetchAndTransformData(search);
         setCountries(countriesWithId);
       }
     };
 
     fetchData();
-  }, [search, searchClicked]);
+  }, []);
 
   const formatLanguages = (languages) => {
     if (languages) {

@@ -24,7 +24,6 @@ export async function fetchAndTransformData(search) {
         throw new Error("Erro desconhecido na solicitação.");
       }
     } catch (error) {
-      console.error("Erro ao buscar dados:", error);
       throw error;
     }
   }

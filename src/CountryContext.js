@@ -4,10 +4,9 @@ export const CountryContext = createContext();
 
 export const CountryProvider = (props) => {
   const [countries, setCountries] = useState([]);
-  const [search, setSearch] = useState('');
 
   return (
-    <CountryContext.Provider value={{ countries, setCountries, search, setSearch }}>
+    <CountryContext.Provider value={{ countries, setCountries}}>
       {props.children}
     </CountryContext.Provider>
   );
