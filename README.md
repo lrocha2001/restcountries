@@ -9,7 +9,7 @@ Esta SPA é um exemplo simples que exibe uma lista de países a partir das regi�
 - Componentes reutilizáveis com Material-UI.
 - Gerenciamento de estado global com a Context API para compartilhar dados entre componentes.
 
- Este projeto foi desenvolvida para a disciplina AS64A - Programação Web Fullstack (UTFPR-CP).
+Este projeto foi desenvolvido para a disciplina AS64A - Programação Web Fullstack (UTFPR-CP).
 
 ## Pré-requisitos
 
