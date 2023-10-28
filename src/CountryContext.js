@@ -6,7 +6,7 @@ export const CountryProvider = (props) => {
   const [countries, setCountries] = useState([]);
 
   return (
-    <CountryContext.Provider value={{ countries, setCountries}}>
+    <CountryContext.Provider value={{ countries, setCountries }}>
       {props.children}
     </CountryContext.Provider>
   );

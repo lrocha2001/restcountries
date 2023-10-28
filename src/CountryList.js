@@ -3,15 +3,25 @@ import { CountryContext } from './CountryContext';
 import { DataGrid } from '@mui/x-data-grid';
 import { fetchAndTransformData } from './Api';
 
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  height: 'calc(100vh - 100px)',
+};
+
+const tableStyle = {
+  width: '80%',
+  maxHeight: '60vh',
+};
+
 const CountryList = () => {
   const { countries, setCountries } = useContext(CountryContext);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const searchInput = document.getElementById('searchInput');
       const search = searchInput ? searchInput.value : '';
-      
-      if (search) { 
+      if (search) {
         const countriesWithId = await fetchAndTransformData(search);
         setCountries(countriesWithId);
       }
@@ -43,15 +53,20 @@ const CountryList = () => {
 
   const columns = [
     { field: 'cca3', headerName: 'Country Code', width: 150 },
-    { field: 'officialName', headerName: 'Official Name', width: 200 },
-    { field: 'subregion', headerName: 'Sub Region', width: 200 },
-    { field: 'languages', headerName: 'Languages', width: 200, valueGetter: params => formatLanguages(params.row.languages)},
-    { field: 'currencies', headerName: 'Currencies', width: 500, valueGetter: params => formatCurrencies(params.row.currencies)},
+    { field: 'officialName', headerName: 'Official Name', width: 320 },
+    { field: 'subregion', headerName: 'Sub Region', width: 250 },
+    { field: 'languages', headerName: 'Languages', width: 400, valueGetter: params => formatLanguages(params.row.languages) },
+    { field: 'currencies', headerName: 'Currencies', width: 650, valueGetter: params => formatCurrencies(params.row.currencies) },
   ];
 
   return (
-    <div style={{ height: 400, width: '55%' }}>
-      <DataGrid rows={countries} columns={columns} />
+    <div style={containerStyle}>
+      <div style={tableStyle}>
+        <DataGrid
+          rows={countries}
+          columns={columns}
+        />
+      </div>
     </div>
   );
 };
