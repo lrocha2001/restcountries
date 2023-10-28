@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Esta SPA é um exemplo simples que exibe uma lista de países. Os principais recursos da aplicação incluem:
+Esta SPA é um exemplo simples que exibe uma lista de países a partir das regiões do globo terreste. Os principais recursos da aplicação incluem:
 
 - Lista de países com detalhes como nome, código do país, região, idiomas e moedas.
 - Pesquisa de países com atualização em tempo real.
