@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, memo } from 'react';
 import { CountryContext } from './CountryContext';
 import { DataGrid } from '@mui/x-data-grid';
-import { fetchAndTransformData } from './Api';
 
 const containerStyle = {
   display: 'flex',
@@ -15,18 +14,11 @@ const tableStyle = {
 };
 
 const CountryList = () => {
-  const { countries, setCountries } = useContext(CountryContext);
+  const { countries } = useContext(CountryContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const searchInput = document.getElementById('searchInput');
-      const search = searchInput ? searchInput.value : '';
-      if (search) {
-        const countriesWithId = await fetchAndTransformData(search);
-        setCountries(countriesWithId);
-      }
     };
-
     fetchData();
   }, []);
 
