@@ -24,6 +24,8 @@ git clone https://github.com/lrocha2001/restcountries.git
 
 cd restcountries
 
+npm install
+
 npm start
 ```
 
