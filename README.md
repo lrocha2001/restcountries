@@ -17,7 +17,7 @@ Antes de começar, certifique-se de ter o seguinte instalado:
 
 - [Node.js](https://nodejs.org/) e [npm](https://www.npmjs.com/): Você precisará dessas ferramentas para executar o projeto.
 
-## Comandos para executar o Projeto
+## Comandos para executar o projeto localmente
 
 ```bash
 git clone https://github.com/lrocha2001/restcountries.git
@@ -26,3 +26,7 @@ cd restcountries
 
 npm start
 ```
+
+## URL da aplicação exposta à Internet
+
+[https://lrocha2001.github.io/restcountries/](https://lrocha2001.github.io/restcountries/)
