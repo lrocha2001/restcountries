@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, memo } from 'react';
+import React, { useContext, memo } from 'react';
 import { CountryContext } from './CountryContext';
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -15,12 +15,6 @@ const tableStyle = {
 
 const CountryList = () => {
   const { countries } = useContext(CountryContext);
-
-  useEffect(() => {
-    const fetchData = async () => {
-    };
-    fetchData();
-  }, []);
 
   const formatLanguages = (languages) => {
     if (languages) {
