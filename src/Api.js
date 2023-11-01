@@ -9,8 +9,8 @@ export async function fetchAndTransformData(search) {
               id: country.cca3,
               officialName: country.name.official,
               subregion: country.subregion,
-              languages: formatLanguages(country.languages),
-              currencies: formatCurrencies(country.currencies),
+              languages: country.languages,
+              currencies: country.currencies,
               ...country,
             }))
           : [];
@@ -26,26 +26,6 @@ export async function fetchAndTransformData(search) {
     } catch (error) {
       throw error;
     }
-  }
-  
-  function formatLanguages(languages) {
-    if (languages) {
-      const languageKeys = Object.keys(languages);
-      const languageValues = languageKeys.map(key => languages[key]);
-      return languageValues.join(', ');
-    }
-    return '';
-  }
-  
-  function formatCurrencies(currencies) {
-    if (currencies) {
-      const currencyKeys = Object.keys(currencies);
-      const currenciesInfo = currencyKeys.map(currency => {
-        const currencyInfo = currencies[currency];
-        return `${currencyInfo.name} (${currencyInfo.symbol})`;
-      });
-      return currenciesInfo.join(', ');
-    }
-    return '';
-  }
+}
+
   
