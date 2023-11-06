@@ -1,10 +1,12 @@
-import React, { useContext, memo } from 'react';
+import React, { useContext, memo, useState } from 'react';
 import { CountryContext } from './CountryContext';
 import { DataGrid } from '@mui/x-data-grid';
+import TablePagination from '@mui/material/TablePagination';
 
 const containerStyle = {
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
   height: 'calc(100vh - 100px)',
 };
 
@@ -13,8 +15,12 @@ const tableStyle = {
   maxHeight: '60vh',
 };
 
+const rowsPerPageOptions = [5, 10, 15, 20, 25, 30];
+
 const CountryList = () => {
   const { countries } = useContext(CountryContext);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const formatLanguages = (languages) => {
     if (languages) {
@@ -37,7 +43,21 @@ const CountryList = () => {
     return '';
   };
 
-  const columns = [
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const startIndex = page * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+
+  const paginatedCountries = countries.slice(startIndex, endIndex);
+
+   const columns = [
     { field: 'cca3', headerName: 'Country Code', width: 150 },
     { field: 'officialName', headerName: 'Official Name', width: 320 },
     { field: 'subregion', headerName: 'Sub Region', width: 250 },
@@ -48,11 +68,17 @@ const CountryList = () => {
   return (
     <div style={containerStyle}>
       <div style={tableStyle}>
-        <DataGrid
-          rows={countries}
-          columns={columns}
-        />
+        <DataGrid rows={paginatedCountries} columns={columns} pagination={false} />
       </div>
+      <TablePagination
+        rowsPerPageOptions={rowsPerPageOptions}
+        component="div"
+        count={countries.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </div>
   );
 };
